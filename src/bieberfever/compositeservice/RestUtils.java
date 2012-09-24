@@ -19,14 +19,13 @@ public class RestUtils {
 	 * @param postdata The data to post if the request type is POST
 	 * @return The response for the request
 	 */
-	public String DoRestCall(String requestUri, String httpMethod, String postdata) {
+	public static String doRestCall(String requestUri, String httpMethod, String postdata) {
 
 		String response = "";
 		try {
 			// connect to the web service via HTTP GET
 			URL url = new URL(requestUri);
-			HttpURLConnection connection = (HttpURLConnection) url
-					.openConnection();
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			
 			if (connection.getResponseCode() != 200) {
 			    throw new IOException(connection.getResponseMessage());
@@ -34,8 +33,7 @@ public class RestUtils {
 
 			connection.setRequestMethod(httpMethod);
 
-			if ("POST".equals(httpMethod)) {
-				
+			if (httpMethod.equals("POST")) {
 				//This connection is used for output
 				connection.setDoOutput(true);
 
@@ -49,7 +47,7 @@ public class RestUtils {
 			
 			//connect, receive response, then disconnect
 			connection.connect();
-			response = ReceiveResponse(connection);
+			response = receiveResponse(connection);
 			
 			connection.disconnect();
 
@@ -65,7 +63,7 @@ public class RestUtils {
 	 * @return The response
 	 * @throws IOException Throws an exception with the server response message if the response cannot be read
 	 */
-	private String ReceiveResponse(HttpURLConnection connection) throws IOException {
+	private static String receiveResponse(HttpURLConnection connection) throws IOException {
 		String response = "";
 		try {
 			InputStream inputStream = connection.getInputStream();
