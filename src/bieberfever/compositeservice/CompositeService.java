@@ -19,9 +19,7 @@ public class CompositeService {
 			default:
 				String restTasks = getRestAttendantTasks(attendantId);
 				String soapTasks = getSoapAttendantTasks(attendantId);
-				if(!restTasks.equals(soapTasks))
-					throw new IllegalStateException("Rest and Soap services returned different results! Server out of sync.");
-				else return restTasks;
+				return restTasks.concat(soapTasks);
 		}
 	}
 	
@@ -40,7 +38,7 @@ public class CompositeService {
 	 * @return
 	 */
 	private static String getSoapAttendantTasks(String attendantId) {
-		return null;
+		return SoapUtils.getAttendantTasks(attendantId);
 	}
 	
 	/**
@@ -78,7 +76,7 @@ public class CompositeService {
 	 * @param taskXml
 	 */
 	private static void createSoapTask(String taskXml) {
-		
+		SoapUtils.createTask(taskXml);
 	}
 	
 	/**
@@ -116,7 +114,7 @@ public class CompositeService {
 	 * @param task_id
 	 */
 	private static void deleteSoapTask(String taskId) {
-		
+		SoapUtils.deleteTask(taskId);
 	}
 	
 	public static void main(String[] args) {

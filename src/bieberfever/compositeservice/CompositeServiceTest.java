@@ -66,7 +66,7 @@ public class CompositeServiceTest {
     // Service 1
     CompositeService.createTask(testXMLTask, 1);
     result = CompositeService.getAttendantTasks("TestAttendee", 1);
-    assertEquals(testXMLTask, result);
+    assertTrue(result.contains(testXMLTask));
   }
   
   /**
