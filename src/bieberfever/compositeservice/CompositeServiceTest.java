@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+// Test XML task
 public class CompositeServiceTest {
   String testXMLTask = 
       "<task id=\"TaskTest\" " +
@@ -19,6 +20,10 @@ public class CompositeServiceTest {
 //    
 //  }
 
+  /**
+   * Get tasks for attendee "rao". 
+   * Checks that resulting tasks are alike from all services.
+   */
   @Test
   public void testGetAttendantTasks() {
     String result1 = null, result2 = null, result3 = null;
@@ -32,6 +37,9 @@ public class CompositeServiceTest {
     assertEquals(result2, result3);
   }
 
+  /**
+   * Test of 3 services. Creates, gets and deletes a test task.
+   */
   @Test
   public void testCreateAndDeleteTask() {
     String result1 = null, result2 = null, result3 = null, empty = "";
