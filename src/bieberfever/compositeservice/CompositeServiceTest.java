@@ -23,23 +23,39 @@ public class CompositeServiceTest {
 //  }
 
   /**
-   * Get tasks for attendee "rao". 
-   * Checks that resulting tasks are alike from all services.
+   * Assert that getAttendantTasks returns a value when it is called with
+   * option 1.
    */
   @Test
-  public void testGetAttendantTasks() {
-    String result1 = null, result2 = null, result3 = null;
-    result1 = CompositeService.getAttendantTasks("rao", 1);
-    System.out.println("Service 1 " + result1);
-    result2 = CompositeService.getAttendantTasks("rao", 2);
-    System.out.println("Service 2 " + result2);
-    result3 = CompositeService.getAttendantTasks("rao", 3);
-    System.out.println("Service 3 " + result3);
-    assertEquals(true, (result1 != null && !result1.isEmpty()));
-    assertEquals(true, (result2 != null && !result2.isEmpty()));
-    assertEquals(true, (result3 != null && !result3.isEmpty()));
-    assertEquals(result1, result2);
-    assertEquals(result2, result3);
+  public void testGetAttendantTasksOption1() {
+	  String result = CompositeService.getAttendantTasks("rao", 1);
+	  System.out.println("Service 1 " + result);
+	  assertNotNull(result);
+	  assertTrue(!result.isEmpty());
+  }
+  
+  /**
+   * Assert that getAttendantTasks returns a value when it is called with
+   * option 2.
+   */
+  @Test
+  public void testGetAttendantTasksOption2() {
+	  String result = CompositeService.getAttendantTasks("rao", 2);
+	  System.out.println("Service 2 " + result);
+	  assertNotNull(result);
+	  assertTrue(!result.isEmpty());
+  }
+  
+  /**
+   * Assert that getAttendantTasks returns a value when it is called with
+   * option 3.
+   */
+  @Test
+  public void testGetAttendantTasksOption3() {
+	  String result = CompositeService.getAttendantTasks("rao", 3);
+	  System.out.println("Service 3 " + result);
+	  assertNotNull(result);
+	  assertTrue(!result.isEmpty());
   }
 
   /**
