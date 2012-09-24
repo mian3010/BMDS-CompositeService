@@ -1,4 +1,4 @@
-package dk.itu.smds.e2012.webservices.basic.common;
+package bieberfever.compositeservice;
 
 import java.io.StringWriter;
 import javax.xml.soap.SOAPMessage;

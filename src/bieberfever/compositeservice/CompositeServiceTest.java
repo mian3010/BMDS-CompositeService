@@ -57,49 +57,42 @@ public class CompositeServiceTest {
   }
 
   /**
-   * Test of SOAP service. Creates, gets and deletes a test task.
+   * Test of SOAP service. Creates and gets a test task.
    */
   @Test
   public void testCreateAndDeleteTaskWithService1() {
-    String result = null, empty = "";
+    String result = null;
     
     // Service 1
     CompositeService.createTask(testXMLTask, 1);
     result = CompositeService.getAttendantTasks("TestAttendee", 1);
     assertEquals(testXMLTask, result);
-    CompositeService.deleteTask("TaskTest", 1);
-    assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 1));
   }
   
   /**
-   * Test of REST service. Creates, gets and deletes a test task.
+   * Test of REST service. Creates and gets a test task.
    */
   @Test
   public void testCreateAndDeleteTaskWithService2() {
-    String result = null, empty = "";
+    String result = null;
     
     // Service 2
     CompositeService.createTask(testXMLTask, 2);
     result = CompositeService.getAttendantTasks("TestAttendee", 2);
     assertTrue(result.contains(testXMLTask));
-    CompositeService.deleteTask("TaskTest", 2);
-    result = CompositeService.getAttendantTasks("TestAttendee", 2);
-    assertFalse(result.contains(testXMLTask));
   }
   
   /**
-   * Test for third service option. Creates, gets and deletes a test task.
+   * Test for third service option. Creates and gets a test task.
    */
   @Test
   public void testCreateAndDeleteTaskWithService3() {
-    String result = null, empty = "";
+    String result = null;
     
     // Service 3
     CompositeService.createTask(testXMLTask, 3);
     result = CompositeService.getAttendantTasks("TestAttendee", 3);
     assertEquals(testXMLTask, result);
-    CompositeService.deleteTask("TaskTest", 3);
-    assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 3));
   }
   
   @Test
@@ -114,21 +107,21 @@ public class CompositeServiceTest {
   
   @Test
   public void testDeleteTaskService2(){
-    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest");
+    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 2).contains("TaskTest");
     if(!taskExists){
       CompositeService.createTask(testXMLTask, 2);
     }
     CompositeService.deleteTask("TaskTest", 2);
-    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest"));
+    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 2).contains("TaskTest"));
   }
   
   @Test
   public void testDeleteTaskService3(){
-    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest");
+    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 3).contains("TaskTest");
     if(!taskExists){
       CompositeService.createTask(testXMLTask, 3);
     }
     CompositeService.deleteTask("TaskTest", 3);
-    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest"));
+    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 3).contains("TaskTest"));
   }
 }
