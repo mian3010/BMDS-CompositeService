@@ -9,7 +9,20 @@ public class CompositeService {
 	 * @return
 	 */
 	public static String getAttendantTasks(String attendantId, int options) {
+		if(options < 1 || options > 3) throw new IllegalArgumentException("Uh-oh - only numbers between 1 and 3 are allowed in CompositeService methods.");
 		
+		switch(options) {
+			case(1):
+				return getSoapAttendantTasks(attendantId);
+			case(2):
+				return getRestAttendantTasks(attendantId);
+			default:
+				String restTasks = getRestAttendantTasks(attendantId);
+				String soapTasks = getSoapAttendantTasks(attendantId);
+				if(!restTasks.equals(soapTasks))
+					throw new IllegalStateException("Rest and Soap services returned different results! Server out of sync.");
+				else return restTasks;
+		}
 	}
 	
 	/**
