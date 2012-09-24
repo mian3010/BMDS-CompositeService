@@ -7,15 +7,13 @@ import org.junit.Test;
 // Test XML task
 public class CompositeServiceTest {
   String testXMLTask = 
-      "<cal> " +
       "<task id=\"TaskTest\" " +
       		"name=\"test task 01\" " +
       		"date=\"24-09-2012\" " +
       		"status=\"pending\">" +
-      " <description>Test task in XML</description>" +
-      " <attendants>TestAttendee</attendants>" +
-      " </task>" +
-      "</cal> ";
+      "<description>Test task in XML</description>" +
+      "<attendants>TestAttendee</attendants>" +
+      "</task>";
   
 //  @BeforeClass
 //  public static void setUpClass() throws Exception {
@@ -83,9 +81,10 @@ public class CompositeServiceTest {
     // Service 2
     CompositeService.createTask(testXMLTask, 2);
     result = CompositeService.getAttendantTasks("TestAttendee", 2);
-    assertEquals(testXMLTask, result);
+    assertTrue(result.contains(testXMLTask));
     CompositeService.deleteTask("TaskTest", 2);
-    assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 2));
+    result = CompositeService.getAttendantTasks("TestAttendee", 2);
+    assertFalse(result.contains(testXMLTask));
   }
   
   /**
