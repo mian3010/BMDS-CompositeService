@@ -6,4 +6,4 @@ BMDS
 Michael - SOAP
 Niclas - REST
 Claus - Client
-Niels - Setup
+Niels - SOAPin' it up
