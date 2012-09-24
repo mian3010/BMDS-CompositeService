@@ -86,8 +86,21 @@ public class CompositeService {
 	 * @param task_id
 	 * @param option
 	 */
-	public static void deleteTask(String task_id, int option) {
+	public static void deleteTask(String task_id, int options) {
+		if(options < 1 || options > 3) throw new IllegalArgumentException("Uh-oh - only numbers between 1 and 3 are allowed in CompositeService methods.");
 		
+		switch(options) {
+			case(1):
+				deleteSoapTask(task_id);
+				break;
+			case(2):
+				deleteRestTask(task_id);
+				break;
+			default:
+				deleteSoapTask(task_id);
+				deleteRestTask(task_id);
+				break;
+		}
 	}
 	
 	/**
