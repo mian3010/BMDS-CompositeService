@@ -1,13 +1,10 @@
 package bieberfever.compositeservice;
 
 import java.rmi.RemoteException;
-
 import dk.itu.smds_e2012.lab.week_04.ITaskManagerService;
 import dk.itu.smds_e2012.lab.week_04.ITaskManagerServiceProxy;
 
 public class SoapUtils {
-  private static String serviceNs = "http://itu.dk/smds-e2012/lab/week-04/";
-  private static String serviceUri = "http://trustcare.itu.dk/task-manager-soap/TaskManagerService.svc";
 
   public static String getAllTasks() {
     ITaskManagerService service = new ITaskManagerServiceProxy();
