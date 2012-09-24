@@ -102,4 +102,34 @@ public class CompositeServiceTest {
     CompositeService.deleteTask("TaskTest", 3);
     assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 3));
   }
+  
+  @Test
+  public void testDeleteTaskService1(){
+    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest");
+    if(!taskExists){
+      CompositeService.createTask(testXMLTask, 1);
+    }
+    CompositeService.deleteTask("TaskTest", 1);
+    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest"));
+  }
+  
+  @Test
+  public void testDeleteTaskService2(){
+    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest");
+    if(!taskExists){
+      CompositeService.createTask(testXMLTask, 2);
+    }
+    CompositeService.deleteTask("TaskTest", 2);
+    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest"));
+  }
+  
+  @Test
+  public void testDeleteTaskService3(){
+    boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest");
+    if(!taskExists){
+      CompositeService.createTask(testXMLTask, 3);
+    }
+    CompositeService.deleteTask("TaskTest", 3);
+    assertFalse(CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest"));
+  }
 }
