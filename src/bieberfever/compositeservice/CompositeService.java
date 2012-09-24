@@ -115,7 +115,7 @@ public class CompositeService {
 	 * Michael
 	 * @param task_id
 	 */
-	private static void deleteSoapTask(String task_id) {
+	private static void deleteSoapTask(String taskId) {
 		
 	}
 	
