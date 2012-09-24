@@ -120,6 +120,7 @@ public class CompositeService {
 	}
 	
 	public static void main(String[] args) {
+		deleteRestTask("lab-01");
 		System.out.println(getAttendantTasks("rao", 2));
 	}
 }
