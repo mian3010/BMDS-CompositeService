@@ -116,9 +116,4 @@ public class CompositeService {
 	private static void deleteSoapTask(String taskId) {
 		SoapUtils.deleteTask(taskId);
 	}
-	
-	public static void main(String[] args) {
-		deleteRestTask("lab-01");
-		System.out.println(getAttendantTasks("rao", 2));
-	}
 }
