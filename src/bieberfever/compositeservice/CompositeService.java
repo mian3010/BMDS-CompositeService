@@ -49,7 +49,20 @@ public class CompositeService {
 	 * @param options
 	 */
 	public static void createTask(String taskXml, int options) {
+		if(options < 1 || options > 3) throw new IllegalArgumentException("Uh-oh - only numbers between 1 and 3 are allowed in CompositeService methods.");
 		
+		switch(options) {
+			case(1):
+				createSoapTask(taskXml);
+				break;
+			case(2):
+				createRestTask(taskXml);
+				break;
+			default:
+				createSoapTask(taskXml);
+				createRestTask(taskXml);
+				break;
+		}
 	}
 	
 	/**
