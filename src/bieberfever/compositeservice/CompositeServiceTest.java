@@ -60,7 +60,7 @@ public class CompositeServiceTest {
    * Test of SOAP service. Creates and gets a test task.
    */
   @Test
-  public void testCreateAndDeleteTaskWithService1() {
+  public void testCreateTaskWithService1() {
     String result = null;
     
     // Service 1
@@ -73,7 +73,7 @@ public class CompositeServiceTest {
    * Test of REST service. Creates and gets a test task.
    */
   @Test
-  public void testCreateAndDeleteTaskWithService2() {
+  public void testCreateTaskWithService2() {
     String result = null;
     
     // Service 2
@@ -86,7 +86,7 @@ public class CompositeServiceTest {
    * Test for third service option. Creates and gets a test task.
    */
   @Test
-  public void testCreateAndDeleteTaskWithService3() {
+  public void testCreateTaskWithService3() {
     String result = null;
     
     // Service 3
@@ -95,6 +95,9 @@ public class CompositeServiceTest {
     assertEquals(testXMLTask, result);
   }
   
+  /**
+   * Delete a test task using SOAP.
+   */
   @Test
   public void testDeleteTaskService1(){
     boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest");
@@ -105,6 +108,9 @@ public class CompositeServiceTest {
     assertFalse(CompositeService.getAttendantTasks("TestAttendee", 1).contains("TaskTest"));
   }
   
+  /**
+   * Delete a test task using REST.
+   */
   @Test
   public void testDeleteTaskService2(){
     boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 2).contains("TaskTest");
@@ -115,6 +121,9 @@ public class CompositeServiceTest {
     assertFalse(CompositeService.getAttendantTasks("TestAttendee", 2).contains("TaskTest"));
   }
   
+  /**
+   * Test for third service option. Delete a test task.
+   */
   @Test
   public void testDeleteTaskService3(){
     boolean taskExists = CompositeService.getAttendantTasks("TestAttendee", 3).contains("TaskTest");
