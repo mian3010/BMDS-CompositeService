@@ -27,9 +27,7 @@ public class RestUtils {
 			URL url = new URL(requestUri);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			
-			if (connection.getResponseCode() != 200) {
-			    throw new IOException(connection.getResponseMessage());
-			}
+			
 
 			connection.setRequestMethod(httpMethod);
 
@@ -47,8 +45,10 @@ public class RestUtils {
 			
 			//connect, receive response, then disconnect
 			connection.connect();
+			if (connection.getResponseCode() != 200) {
+			    throw new IOException(connection.getResponseMessage());
+			}
 			response = receiveResponse(connection);
-			
 			connection.disconnect();
 
 		} catch (IOException e) {

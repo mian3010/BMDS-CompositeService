@@ -26,9 +26,9 @@ public class CompositeService {
 	}
 	
 	/**
-	 * 
-	 * @param attendantId
-	 * @return
+	 * Get a task based on an attendant ID
+	 * @param attendantId The ID of the attendant
+	 * @return A task matching the attendant ID
 	 */
 	private static String getRestAttendantTasks(String attendantId) {
 		return RestUtils.doRestCall("http://trustcare.itu.dk/task-manager-rest/tasks/attendant/"+ attendantId, "GET", null);
@@ -40,7 +40,7 @@ public class CompositeService {
 	 * @return
 	 */
 	private static String getSoapAttendantTasks(String attendantId) {
-		
+		return "";
 	}
 	
 	/**
@@ -66,11 +66,11 @@ public class CompositeService {
 	}
 	
 	/**
-	 * Niclas
-	 * @param taskXml
+	 * Creates a task based on the given XML
+	 * @param taskXml The XML to create the task from
 	 */
 	private static void createRestTask(String taskXml) {
-		RestUtils.doRestCall("http://trustcare.itu.dk/task-manager-rest/tasks/createtask", "POST", taskXml);
+		System.out.println(RestUtils.doRestCall("http://trustcare.itu.dk/task-manager-rest/tasks/createtask", "POST", taskXml));
 	}
 	
 	/**
@@ -118,5 +118,8 @@ public class CompositeService {
 	private static void deleteSoapTask(String task_id) {
 		
 	}
-
+	
+	public static void main(String[] args) {
+		System.out.println(getAttendantTasks("rao", 2));
+	}
 }
