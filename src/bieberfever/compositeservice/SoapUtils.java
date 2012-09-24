@@ -21,7 +21,7 @@ public class SoapUtils {
   private Service webService;
   private QName port;
 
-  public static String doRestCall(String soapMethod, String[] params) {
+  public static String doSoapCall(String soapMethod, String[] params) {
     SoapUtils utils = new SoapUtils();
     // Initialise SOAP
     utils.initialize();
@@ -93,6 +93,6 @@ public class SoapUtils {
 
   public static void main(String[] args) {
     String[] params = { "tch-01" };
-    doRestCall("GetTask", params);
+    doSoapCall("GetTask", params);
   }
 }
