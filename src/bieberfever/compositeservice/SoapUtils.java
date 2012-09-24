@@ -2,18 +2,12 @@ package bieberfever.compositeservice;
 
 import java.rmi.RemoteException;
 
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.soap.SOAPBinding;
-
 import dk.itu.smds_e2012.lab.week_04.ITaskManagerService;
 import dk.itu.smds_e2012.lab.week_04.ITaskManagerServiceProxy;
 
 public class SoapUtils {
-  private String serviceNs = "http://itu.dk/smds-e2012/lab/week-04/";
-  private String serviceUri = "http://trustcare.itu.dk/task-manager-soap/TaskManagerService.svc";
-  private Service webService;
-  private QName port;
+  private static String serviceNs = "http://itu.dk/smds-e2012/lab/week-04/";
+  private static String serviceUri = "http://trustcare.itu.dk/task-manager-soap/TaskManagerService.svc";
 
   public static String getAllTasks() {
     ITaskManagerService service = new ITaskManagerServiceProxy();
@@ -32,7 +26,7 @@ public class SoapUtils {
       throw new IllegalStateException("OH NO SHIT HAPPENED", e);
     }
   }
-  
+
   public static void createTask(String taskXml) {
     ITaskManagerService service = new ITaskManagerServiceProxy();
     try {
@@ -41,7 +35,7 @@ public class SoapUtils {
       throw new IllegalStateException("OH NO SHIT HAPPENED", e);
     }
   }
-  
+
   public static void deleteTask(String taskId) {
     ITaskManagerService service = new ITaskManagerServiceProxy();
     try {
