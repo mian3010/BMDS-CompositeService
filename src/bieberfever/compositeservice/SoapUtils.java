@@ -25,7 +25,7 @@ public class SoapUtils {
     SoapUtils utils = new SoapUtils();
     // Initialise SOAP
     utils.initialize();
-
+    
     try {
       // Create the request to send to server
       MessageFactory factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
@@ -33,19 +33,28 @@ public class SoapUtils {
       SOAPMessage message = factory.createMessage();
       SOAPHeader header = message.getSOAPHeader();
       header.detachNode();
+      
       SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
-      envelope.setAttribute("namspace",utils.serviceNs);
+      envelope.setAttribute("namespace",utils.serviceNs);
+      
       SOAPBody body = message.getSOAPBody();
       QName bodyName = new QName(utils.serviceNs, "getResponse");
       SOAPBodyElement bodyElement = body.addBodyElement(bodyName);
+      
       SOAPElement symbol = bodyElement.addChildElement("taskId");
       symbol.addTextNode("tch-01");
+      
       SOAPConnection connection = SOAPConnectionFactory.newInstance().createConnection();
+      
       SOAPMessage response = connection.call(message, utils.serviceUri);
+      
       connection.close();
+      
       SOAPBody responseBody = response.getSOAPBody();
+      
       SOAPBodyElement responseElement = (SOAPBodyElement)responseBody.getChildElements().next();
       SOAPElement returnElement = (SOAPElement)responseElement.getChildElements().next();
+      
       if(responseBody.getFault() != null) { //-- If response has any fault.
           System.out.println(returnElement.getValue()+" "+responseBody.getFault().getFaultString());
       }  else  {
