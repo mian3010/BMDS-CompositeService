@@ -7,13 +7,15 @@ import org.junit.Test;
 // Test XML task
 public class CompositeServiceTest {
   String testXMLTask = 
+      "<cal> " +
       "<task id=\"TaskTest\" " +
       		"name=\"test task 01\" " +
       		"date=\"24-09-2012\" " +
       		"status=\"pending\">" +
       " <description>Test task in XML</description>" +
       " <attendants>TestAttendee</attendants>" +
-      " </task>";
+      " </task>" +
+      "</cal> ";
   
 //  @BeforeClass
 //  public static void setUpClass() throws Exception {
@@ -28,8 +30,11 @@ public class CompositeServiceTest {
   public void testGetAttendantTasks() {
     String result1 = null, result2 = null, result3 = null;
     result1 = CompositeService.getAttendantTasks("rao", 1);
-    result1 = CompositeService.getAttendantTasks("rao", 2);
-    result1 = CompositeService.getAttendantTasks("rao", 3);
+    System.out.println("Service 1 " + result1);
+    result2 = CompositeService.getAttendantTasks("rao", 2);
+    System.out.println("Service 2 " + result2);
+    result3 = CompositeService.getAttendantTasks("rao", 3);
+    System.out.println("Service 3 " + result3);
     assertEquals(true, (result1 != null && !result1.isEmpty()));
     assertEquals(true, (result2 != null && !result2.isEmpty()));
     assertEquals(true, (result3 != null && !result3.isEmpty()));

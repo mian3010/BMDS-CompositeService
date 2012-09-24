@@ -40,7 +40,7 @@ public class CompositeService {
 	 * @return
 	 */
 	private static String getSoapAttendantTasks(String attendantId) {
-		return "";
+		return null;
 	}
 	
 	/**
