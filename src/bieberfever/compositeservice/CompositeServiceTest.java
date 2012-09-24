@@ -38,30 +38,46 @@ public class CompositeServiceTest {
   }
 
   /**
-   * Test of 3 services. Creates, gets and deletes a test task.
+   * Test of SOAP service. Creates, gets and deletes a test task.
    */
   @Test
-  public void testCreateAndDeleteTask() {
-    String result1 = null, result2 = null, result3 = null, empty = "";
+  public void testCreateAndDeleteTaskWithService1() {
+    String result = null, empty = "";
     
     // Service 1
     CompositeService.createTask(testXMLTask, 1);
-    result1 = CompositeService.getAttendantTasks("TestAttendee", 1);
-    assertEquals(testXMLTask, result1);
+    result = CompositeService.getAttendantTasks("TestAttendee", 1);
+    assertEquals(testXMLTask, result);
     CompositeService.deleteTask("TaskTest", 1);
     assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 1));
+  }
+  
+  /**
+   * Test of REST service. Creates, gets and deletes a test task.
+   */
+  @Test
+  public void testCreateAndDeleteTaskWithService2() {
+    String result = null, empty = "";
     
     // Service 2
     CompositeService.createTask(testXMLTask, 2);
-    result2 = CompositeService.getAttendantTasks("TestAttendee", 2);
-    assertEquals(testXMLTask, result2);
+    result = CompositeService.getAttendantTasks("TestAttendee", 2);
+    assertEquals(testXMLTask, result);
     CompositeService.deleteTask("TaskTest", 2);
     assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 2));
+  }
+  
+  /**
+   * Test for third service option. Creates, gets and deletes a test task.
+   */
+  @Test
+  public void testCreateAndDeleteTaskWithService3() {
+    String result = null, empty = "";
     
     // Service 3
     CompositeService.createTask(testXMLTask, 3);
-    result1 = CompositeService.getAttendantTasks("TestAttendee", 3);
-    assertEquals(testXMLTask, result3);
+    result = CompositeService.getAttendantTasks("TestAttendee", 3);
+    assertEquals(testXMLTask, result);
     CompositeService.deleteTask("TaskTest", 3);
     assertEquals(empty, CompositeService.getAttendantTasks("TestAttendee", 3));
   }
