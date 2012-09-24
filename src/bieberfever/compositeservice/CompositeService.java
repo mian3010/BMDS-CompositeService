@@ -26,12 +26,12 @@ public class CompositeService {
 	}
 	
 	/**
-	 * Niclas
+	 * 
 	 * @param attendantId
 	 * @return
 	 */
 	private static String getRestAttendantTasks(String attendantId) {
-		return null;
+		return RestUtils.doRestCall("http://trustcare.itu.dk/task-manager-rest/tasks/attendant/"+ attendantId, "GET", null);
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class CompositeService {
 	 * @param taskXml
 	 */
 	private static void createRestTask(String taskXml) {
-		
+		RestUtils.doRestCall("http://trustcare.itu.dk/task-manager-rest/tasks/createtask", "POST", taskXml);
 	}
 	
 	/**
@@ -104,11 +104,11 @@ public class CompositeService {
 	}
 	
 	/**
-	 * Niclas
-	 * @param task_id
+	 * Deletes a task in the REST service based on a taskId
+	 * @param taskId The taskId of the Task to delete
 	 */
-	private static void deleteRestTask(String task_id) {
-		
+	private static void deleteRestTask(String taskId) {
+		RestUtils.doRestCall("http://trustcare.itu.dk/task-manager-rest/tasks/DeleteTask?taskId=" + taskId, "DELETE", null);
 	}
 	
 	/**
