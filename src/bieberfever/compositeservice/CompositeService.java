@@ -17,9 +17,18 @@ public class CompositeService {
 			case(2):
 				return getRestAttendantTasks(attendantId);
 			default:
-				String restTasks = getRestAttendantTasks(attendantId);
-				String soapTasks = getSoapAttendantTasks(attendantId);
-				return restTasks.concat(soapTasks);
+				//Get tasks from both services
+				TaskList restTasks = JaxbUtils.xmlToTaskList(getRestAttendantTasks(attendantId));
+				TaskList soapTasks = JaxbUtils.xmlToTaskList(getSoapAttendantTasks(attendantId));
+				//Remove duplicates
+				for (Task t : restTasks.list) {
+					if (soapTasks.list.contains(t)) {
+						soapTasks.list.remove(t);
+					}
+				}
+				//merge and return xml
+				restTasks.list.addAll(soapTasks.list);
+				return JaxbUtils.taskListToXml(restTasks);
 		}
 	}
 	
@@ -84,19 +93,19 @@ public class CompositeService {
 	 * @param task_id
 	 * @param option
 	 */
-	public static void deleteTask(String task_id, int options) {
+	public static void deleteTask(String taskId, int options) {
 		if(options < 1 || options > 3) throw new IllegalArgumentException("Uh-oh - only numbers between 1 and 3 are allowed in CompositeService methods.");
 		
 		switch(options) {
 			case(1):
-				deleteSoapTask(task_id);
+				deleteSoapTask(taskId);
 				break;
 			case(2):
-				deleteRestTask(task_id);
+				deleteRestTask(taskId);
 				break;
 			default:
-				deleteSoapTask(task_id);
-				deleteRestTask(task_id);
+				deleteSoapTask(taskId);
+				deleteRestTask(taskId);
 				break;
 		}
 	}
