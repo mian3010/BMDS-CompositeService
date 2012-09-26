@@ -27,9 +27,7 @@ public class CompositeServiceTest {
   @Test
   public void testGetAttendantTasksOption1() {
 	  String result = CompositeService.getAttendantTasks("rao", 1);
-	  System.out.println("Service 1 " + result);
-	  assertNotNull(result);
-	  assertTrue(!result.isEmpty());
+    assertTrue(result.contains("rao"));
   }
   
   /**
@@ -39,9 +37,7 @@ public class CompositeServiceTest {
   @Test
   public void testGetAttendantTasksOption2() {
 	  String result = CompositeService.getAttendantTasks("rao", 2);
-	  System.out.println("Service 2 " + result);
-	  assertNotNull(result);
-	  assertTrue(!result.isEmpty());
+    assertTrue(result.contains("rao"));
   }
   
   /**
@@ -51,9 +47,7 @@ public class CompositeServiceTest {
   @Test
   public void testGetAttendantTasksOption3() {
 	  String result = CompositeService.getAttendantTasks("rao", 3);
-	  System.out.println("Service 3 " + result);
-	  assertNotNull(result);
-	  assertTrue(!result.isEmpty());
+    assertTrue(result.contains("rao"));
   }
 
   /**
@@ -66,7 +60,8 @@ public class CompositeServiceTest {
     // Service 1
     CompositeService.createTask(testXMLTask, 1);
     result = CompositeService.getAttendantTasks("TestAttendee", 1);
-    assertTrue(result.contains(testXMLTask));
+    TaskList taskList = JaxbUtils.xmlToTaskList(result);
+    assertTrue(taskList.list.contains(JaxbUtils.xmlToTask(testXMLTask)));
   }
   
   /**
@@ -79,7 +74,8 @@ public class CompositeServiceTest {
     // Service 2
     CompositeService.createTask(testXMLTask, 2);
     result = CompositeService.getAttendantTasks("TestAttendee", 2);
-    assertTrue(result.contains(testXMLTask));
+    TaskList taskList = JaxbUtils.xmlToTaskList(result);
+    assertTrue(taskList.list.contains(JaxbUtils.xmlToTask(testXMLTask)));
   }
   
   /**
@@ -92,7 +88,8 @@ public class CompositeServiceTest {
     // Service 3
     CompositeService.createTask(testXMLTask, 3);
     result = CompositeService.getAttendantTasks("TestAttendee", 3);
-    assertEquals(testXMLTask, result);
+    TaskList taskList = JaxbUtils.xmlToTaskList(result);
+    assertTrue(taskList.list.contains(JaxbUtils.xmlToTask(testXMLTask)));
   }
   
   /**
