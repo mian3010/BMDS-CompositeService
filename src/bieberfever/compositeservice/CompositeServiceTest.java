@@ -2,6 +2,8 @@ package bieberfever.compositeservice;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 import org.junit.Test;
 
 // Test XML task
@@ -90,6 +92,81 @@ public class CompositeServiceTest {
     result = CompositeService.getAttendantTasks("TestAttendee", 3);
     TaskList taskList = JaxbUtils.xmlToTaskList(result);
     assertTrue(taskList.list.contains(JaxbUtils.xmlToTask(testXMLTask)));
+  }
+  
+  /**
+   * Test of SOAP service. Creates and gets a test task.
+   */
+  @Test
+  public void testCreateTaskWithService1HashCheck() {
+    String result = null;
+    boolean pass = false;
+    Task testTask = JaxbUtils.xmlToTask(testXMLTask);
+    
+    // Service 1
+    CompositeService.createTask(testXMLTask, 1);
+    result = CompositeService.getAttendantTasks("TestAttendee", 1);
+    TaskList taskList = JaxbUtils.xmlToTaskList(result);
+    Iterator<Task> it = taskList.list.iterator();
+    Task task = null;
+    while(it.hasNext()){
+      task = it.next();
+      if(task.equals(testTask)){
+        pass = true;
+        break;
+      }
+    }
+    assertTrue(pass);
+  }
+  
+  /**
+   * Test of REST service. Creates and gets a test task.
+   */
+  @Test
+  public void testCreateTaskWithService2HashCheck() {
+    String result = null;
+    boolean pass = false;
+    Task testTask = JaxbUtils.xmlToTask(testXMLTask);
+    
+    // Service 2
+    CompositeService.createTask(testXMLTask, 2);
+    result = CompositeService.getAttendantTasks("TestAttendee", 2);
+    TaskList taskList = JaxbUtils.xmlToTaskList(result);
+    Iterator<Task> it = taskList.list.iterator();
+    Task task = null;
+    while(it.hasNext()){
+      task = it.next();
+      if(task.equals(testTask)){
+        pass = true;
+        break;
+      }
+    }
+    assertTrue(pass);
+  }
+  
+  /**
+   * Test for third service option. Creates and gets a test task.
+   */
+  @Test
+  public void testCreateTaskWithService3HashCheck() {
+    String result = null;
+    boolean pass = false;
+    Task testTask = JaxbUtils.xmlToTask(testXMLTask);
+    
+    // Service 3
+    CompositeService.createTask(testXMLTask, 3);
+    result = CompositeService.getAttendantTasks("TestAttendee", 3);
+    TaskList taskList = JaxbUtils.xmlToTaskList(result);
+    Iterator<Task> it = taskList.list.iterator();
+    Task task = null;
+    while(it.hasNext()){
+      task = it.next();
+      if(task.equals(testTask)){
+        pass = true;
+        break;
+      }
+    }
+    assertTrue(pass);
   }
   
   /**
